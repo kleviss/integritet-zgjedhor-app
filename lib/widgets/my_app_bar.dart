@@ -44,7 +44,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
         Stack(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 10, right: 20),
+              margin: const EdgeInsets.only(top: 0, right: 20),
               padding: const EdgeInsets.only(right: 3),
               decoration: BoxDecoration(
                 color: kBackground,
@@ -58,22 +58,10 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
                 ],
               ),
               child: const Padding(
-                padding: EdgeInsets.all(6.0),
-                child: Icon(
-                  CupertinoIcons.bolt_fill,
-                  color: kFont,
-                ),
-              ),
-            ),
-            Positioned(
-              top: 15,
-              right: 22,
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: kAccent,
-                  borderRadius: BorderRadius.circular(10),
+                padding: EdgeInsets.only(left: 10, right: 6, top: 3, bottom: 3),
+                child: Image(
+                  image: AssetImage('assets/images/sq.png'),
+                  height: 30,
                 ),
               ),
             ),

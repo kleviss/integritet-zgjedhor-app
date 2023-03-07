@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'integritet zgjedhor 2023',
       routerConfig: router,
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
     );
   }
 }

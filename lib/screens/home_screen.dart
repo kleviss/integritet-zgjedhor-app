@@ -1,5 +1,7 @@
 import 'package:integriteti_zgjedhor_app/constants/colors.dart';
 import 'package:integriteti_zgjedhor_app/widgets/active_courses.dart';
+import 'package:integriteti_zgjedhor_app/widgets/categories/categories_sections.dart';
+import 'package:integriteti_zgjedhor_app/widgets/categories/category_item.dart';
 import 'package:integriteti_zgjedhor_app/widgets/category_title.dart';
 import 'package:integriteti_zgjedhor_app/widgets/emoji_text.dart';
 import 'package:integriteti_zgjedhor_app/widgets/feature_course.dart';
@@ -21,126 +23,57 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             EmojiText(),
+            const SizedBox(height: 20),
             const SearchInput(),
             const CategoryTitle(lT: 'Kategoritë', rT: 'Të gjitha'),
-            _buildCategories(),
-            const CategoryTitle(lT: 'Kontrollo', rT: 'Më shumë'),
-            FeatureCourses(),
-            const CategoryTitle(lT: 'Harta e shkelesve', rT: ''),
-            ActiveCourses(),
+            const CategoriesSection(),
+            //const CategoryTitle(lT: 'Kontrollo', rT: 'Më shumë'),
+            //FeatureCourses(),
+            //const CategoryTitle(lT: 'Harta e shkelesve', rT: ''),
+            //ActiveCourses(),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        backgroundColor: kFont,
+        isExtended: true,
+        tooltip: 'Raporto një shkelje',
+        enableFeedback: true,
+        icon: const Icon(
+          CupertinoIcons.add,
+          color: kBackground,
+        ),
+        label: const Text(
+          'Raporto një shkelje',
+          style: TextStyle(color: kBackground),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Kryefaqja',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.domain_sharp),
+            label: 'Bashkitë',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.list_bullet),
+            label: 'Më shumë',
+          ),
+        ],
+        currentIndex: 0,
+        selectedItemColor: kFont,
+        unselectedItemColor: kFontLight,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: kBackground,
+      ),
     );
   }
-}
-
-// build categories courses featuring an image and a title and call to action button
-Widget _buildCategories() {
-  return Container(
-    height: 160,
-    child: ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        _buildCategoryItem(
-            'assets/images/illustration_3.jpg', 'Targat', '26 raportime'),
-        _buildCategoryItem(
-          'assets/images/illustration_2.jpg',
-          'Shkelësit',
-          '6 zyrtarë',
-        ),
-        _buildCategoryItem(
-          'assets/images/illustration_1.jpg',
-          'Bashkitë',
-          '4 shkelje',
-        ),
-        _buildCategoryItem(
-          'assets/images/illustration_4.jpg',
-          'Informacion',
-          'Më shumë',
-        ),
-        _buildCategoryItem(
-          'assets/images/illustration_5.jpg',
-          'Pëfshihu',
-          '62 raportues',
-        ),
-        _buildCategoryItem(
-          'assets/images/illustration_5.jpg',
-          'Rreth nesh',
-          'Misioni',
-        ),
-      ],
-    ),
-  );
-}
-
-// build category Item
-Widget _buildCategoryItem(
-  String image,
-  String title,
-  String subtitle,
-) {
-  return Container(
-    margin: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
-    width: 100,
-    decoration: BoxDecoration(
-      color: kBackground,
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: [
-        BoxShadow(
-          color: kFontLight.withOpacity(0.2),
-          offset: const Offset(0, 12),
-          blurRadius: 16,
-        ),
-      ],
-    ),
-    child: Column(
-      children: [
-        Container(
-          height: 55,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-            image: DecorationImage(
-              image: AssetImage(image),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    color: kFont,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Center(
-                child: Text(
-                  subtitle,
-                  style: const TextStyle(
-                    color: kFontLight,
-                    fontSize: 12,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
 }
 
 // build popular courses featuring an image and a title and call to action button
