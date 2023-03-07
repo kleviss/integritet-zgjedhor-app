@@ -1,8 +1,8 @@
-# e_learning_app
+# Integriteti Zgjedhor - Flutter App
 
-A new Flutter project.
+Hey njerez, ky app eshte nje projekt per nje aplikacion per Android dhe iOS qe do te përdoret për të raportuar dhe për të denoncuar parregullsitë dhe shkeljet e ligjit zgjedhor.Informohu mbi ndalesat e kodit zgjedhor për kandidatët, partitë dhe zyrtarët publikë.
 
-## Getting Started
+## Nga tja nisesh?
 
 This project is a starting point for a Flutter application.
 
@@ -14,3 +14,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Made with ❤️ by [Integriteti Zgjedhor](https://integritet.optech.al/)
