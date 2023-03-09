@@ -24,7 +24,7 @@ final goRouter = GoRouter(
       },
       routes: [
         GoRoute(
-          path: '/',
+          path: '/home',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: HomeScreen(),
           ),
