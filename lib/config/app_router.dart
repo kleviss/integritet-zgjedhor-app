@@ -22,12 +22,6 @@ final GoRouter router = GoRouter(
             );
           },
         ),
-        // GoRoute(
-        //   path: 'category/:id',
-        //   pageBuilder: (BuildContext context, GoRouterState state) {
-        //     return const MaterialPage<void>(child: CourseScreen());
-        //   },
-        // ),
       ],
     ),
   ],
