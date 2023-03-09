@@ -20,7 +20,7 @@ class CategoriesSection extends StatelessWidget {
           InkWell(
             onTap: () {
               // context go with params
-              context.push('/home/targat');
+              context.push('/targat');
             },
             child: const CategoryItem(
               image: 'assets/images/illustration_3.jpg',

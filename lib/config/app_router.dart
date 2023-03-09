@@ -3,6 +3,7 @@ import 'package:integriteti_zgjedhor_app/screens/details_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:integriteti_zgjedhor_app/screens/more_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/root_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/scaffold_with_bottom_nav.dart';
 import 'package:integriteti_zgjedhor_app/screens/targat_screen.dart';
@@ -23,16 +24,14 @@ final goRouter = GoRouter(
       },
       routes: [
         GoRoute(
-          path: '/home',
+          path: '/',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: HomeScreen(),
           ),
-          routes: [
-            GoRoute(
-              path: 'targat',
-              builder: (context, state) => const DetailsScreen(label: 'TARGAT'),
-            ),
-          ],
+        ),
+        GoRoute(
+          path: '/targat',
+          builder: (context, state) => const DetailsScreen(label: 'TARGAT'),
         ),
         GoRoute(
           path: '/shkelesit',
@@ -65,7 +64,7 @@ final goRouter = GoRouter(
         GoRoute(
           path: '/more',
           pageBuilder: (context, state) => const NoTransitionPage(
-            child: RootScreen(label: 'MORE', detailsPath: '/more'),
+            child: MoreScreen(),
           ),
         ),
       ],
