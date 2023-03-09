@@ -49,29 +49,6 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: kBackground),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
-            label: 'Kryefaqja',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.domain_sharp),
-            label: 'Bashkitë',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.list_bullet),
-            label: 'Më shumë',
-          ),
-        ],
-        currentIndex: 0,
-        selectedItemColor: kFont,
-        unselectedItemColor: kFontLight,
-        showUnselectedLabels: true,
-        showSelectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: kBackground,
-      ),
     );
   }
 }

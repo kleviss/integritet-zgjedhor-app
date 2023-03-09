@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'integritet zgjedhor 2023',
-      routerConfig: router,
+      title: 'Integritet Zgjedhor 2023',
+      routerConfig: goRouter,
       theme: ThemeData(
         useMaterial3: true,
       ),
