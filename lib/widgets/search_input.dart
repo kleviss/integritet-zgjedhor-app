@@ -34,7 +34,7 @@ class SearchInput extends StatelessWidget {
               CupertinoIcons.search,
               color: kFont,
             ),
-            hintText: 'Kërko shkelësit ose zyrtarët',
+            hintText: 'Kërko shkelës, zyrtarë ose targa',
             hintStyle: TextStyle(color: kFontLight),
           ),
         ),
