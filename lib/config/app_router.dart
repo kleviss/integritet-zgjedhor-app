@@ -4,6 +4,7 @@ import 'package:integriteti_zgjedhor_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:integriteti_zgjedhor_app/screens/more_screen.dart';
+import 'package:integriteti_zgjedhor_app/screens/my_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/root_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/scaffold_with_bottom_nav.dart';
 import 'package:integriteti_zgjedhor_app/screens/targat_screen.dart';
@@ -31,7 +32,7 @@ final goRouter = GoRouter(
         ),
         GoRoute(
           path: '/targat',
-          builder: (context, state) => const DetailsScreen(label: 'TARGAT'),
+          builder: (context, state) => const MyScreen(),
         ),
         GoRoute(
           path: '/shkelesit',

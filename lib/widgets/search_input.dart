@@ -5,7 +5,14 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class SearchInput extends StatelessWidget {
-  const SearchInput({super.key});
+  const SearchInput({
+    super.key,
+    this.controller,
+    required this.onSubmit,
+  });
+
+  final TextEditingController? controller;
+  final onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +34,17 @@ class SearchInput extends StatelessWidget {
             ),
           ],
         ),
-        child: const TextField(
+        child: TextField(
+          controller: controller,
+          onSubmitted: (value) => onSubmit,
           decoration: InputDecoration(
             border: InputBorder.none,
-            icon: Icon(
-              CupertinoIcons.search,
-              color: kFont,
+            icon: GestureDetector(
+              onTap: () => onSubmit,
+              child: const Icon(
+                CupertinoIcons.search,
+                color: kFont,
+              ),
             ),
             hintText: 'Kërko shkelës, zyrtarë ose targa',
             hintStyle: TextStyle(color: kFontLight),
