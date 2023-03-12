@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:integriteti_zgjedhor_app/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -22,11 +24,25 @@ class CategoryTitle extends StatelessWidget {
             style: const TextStyle(
                 color: kFont, fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Text(
-            rT,
-            style: const TextStyle(
-                color: kFontLight, fontSize: 14, fontWeight: FontWeight.normal),
+          InkWell(
+            onTap: () => context.go('/more'),
+            child: Row(children: [
+              Text(
+                rT,
+                style: const TextStyle(
+                    color: kFontLight,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal),
+              ),
+              const SizedBox(width: 5),
+              const Icon(
+                CupertinoIcons.arrow_right,
+                color: kFontLight,
+                size: 18,
+              ),
+            ]),
           ),
+          // Arrow icon
         ],
       ),
     );

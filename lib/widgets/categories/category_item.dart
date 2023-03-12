@@ -45,7 +45,7 @@ class _CategoryItemState extends State<CategoryItem> {
               ),
               image: DecorationImage(
                 image: AssetImage(widget.image),
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               ),
             ),
           ),

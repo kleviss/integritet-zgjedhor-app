@@ -23,7 +23,7 @@ class CategoriesSection extends StatelessWidget {
               context.push('/targat');
             },
             child: const CategoryItem(
-              image: 'assets/images/illustration_3.jpg',
+              image: 'assets/icons/targat.png',
               title: 'Targat',
               subtitle: '26 raportime',
             ),
@@ -34,7 +34,7 @@ class CategoriesSection extends StatelessWidget {
               context.go('/shkelesit');
             },
             child: const CategoryItem(
-              image: 'assets/images/illustration_2.jpg',
+              image: 'assets/icons/kandidatet.png',
               title: 'Shkelësit',
               subtitle: '6 zyrtarë',
             ),
@@ -45,23 +45,23 @@ class CategoriesSection extends StatelessWidget {
               context.go('/bashkite');
             },
             child: const CategoryItem(
-              image: 'assets/images/illustration_1.jpg',
+              image: 'assets/icons/harta.png',
               title: 'Bashkitë',
               subtitle: '4 shkelje',
             ),
           ),
           CategoryItem(
-            image: 'assets/images/illustration_4.jpg',
+            image: 'assets/icons/kodizgjedhor.png',
             title: 'Informacion',
             subtitle: 'Më shumë',
           ),
           CategoryItem(
-            image: 'assets/images/illustration_5.jpg',
+            image: 'assets/icons/perfshihu.png',
             title: 'Pëfshihu',
             subtitle: '62 raportues',
           ),
           CategoryItem(
-            image: 'assets/images/illustration_5.jpg',
+            image: 'assets/icons/rrethnesh.png',
             title: 'Rreth nesh',
             subtitle: 'Misioni',
           ),

@@ -1,11 +1,13 @@
 import 'package:integriteti_zgjedhor_app/screens/course_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/details_screen.dart';
+import 'package:integriteti_zgjedhor_app/screens/fast_form_report_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:integriteti_zgjedhor_app/screens/more_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/my_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/my_search_screen.dart';
+import 'package:integriteti_zgjedhor_app/screens/report_form_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/root_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/scaffold_with_bottom_nav.dart';
 import 'package:integriteti_zgjedhor_app/screens/targat_screen.dart';
@@ -71,10 +73,16 @@ final goRouter = GoRouter(
         ),
         GoRoute(
           path: '/report',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: ReportFormScreen(),
+          ),
+        ),
+        GoRoute(
+          path: '/privacy-policy',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: RootScreen(
-              label: 'RAPORTO',
-              detailsPath: '/report/details',
+              label: 'PRIVACY POLICY',
+              detailsPath: '/privacy-policy/details',
             ),
           ),
         ),

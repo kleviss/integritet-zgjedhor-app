@@ -66,18 +66,19 @@ class InfoBox extends StatelessWidget {
             ),
           const SizedBox(height: 16.0),
           OutlinedButton(
-              onPressed: () => context.go(goToPath),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.blue),
-                side: MaterialStateProperty.all(
-                  const BorderSide(
-                    color: Colors.blue,
-                    width: 0.0,
-                  ),
+            onPressed: () => context.push(goToPath),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              foregroundColor: MaterialStateProperty.all(Colors.blue),
+              side: MaterialStateProperty.all(
+                const BorderSide(
+                  color: Colors.blue,
+                  width: 0.0,
                 ),
               ),
-              child: Text(buttonText)),
+            ),
+            child: Text(buttonText),
+          ),
         ],
       ),
     );

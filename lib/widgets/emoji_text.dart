@@ -12,9 +12,10 @@ class EmojiText extends StatelessWidget {
   final Map<String, String> emojiTextMap = {
     'Informohu dhe vepro!': ' 👊',
     'Raporto shkeljet!': ' 📸',
+    'Vepro për integritet!': ' 🇦🇱',
     // 'You are the best!': ' 🥇',
     // 'You are the star of the day!': ' 💫',
-    // 'Let\'s get to the next level!': ' 🚀',
+    // 'Let\'s get to the next level!': ' 🚀',🎯
     // 'Bravo! You are the best!': ' 👏',
     // 'You are shining!': ' ✨',
     // 'Let\'s boost your brain power!': ' 🚀'

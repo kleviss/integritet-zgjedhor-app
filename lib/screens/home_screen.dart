@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:integriteti_zgjedhor_app/constants/colors.dart';
 import 'package:integriteti_zgjedhor_app/widgets/active_courses.dart';
 import 'package:integriteti_zgjedhor_app/widgets/categories/categories_sections.dart';
@@ -35,7 +36,9 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          context.push('/report');
+        },
         backgroundColor: kFont,
         isExtended: true,
         tooltip: 'Raporto një shkelje',
