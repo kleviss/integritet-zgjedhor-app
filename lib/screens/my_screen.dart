@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:integriteti_zgjedhor_app/widgets/my_app_bar.dart';
+import 'package:integriteti_zgjedhor_app/widgets/search_input.dart';
 
 class MyScreen extends StatefulWidget {
   const MyScreen({Key? key}) : super(key: key);
@@ -12,33 +12,7 @@ class MyScreen extends StatefulWidget {
 class _MyScreenState extends State<MyScreen> {
   final _searchController = TextEditingController();
   bool _searchSuccessful = false;
-  List _filteredData = [];
-
-  Future<List> _fetchData() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      print(jsonData);
-      return jsonData;
-    } else {
-      throw Exception('Failed to fetch data');
-    }
-  }
-
-  _submitSearch(value) async {
-    final data = await _fetchData();
-    print('data: $data');
-    final filteredData = data
-        .where(
-            (item) => item['name'].toLowerCase().contains(value.toLowerCase()))
-        .toList();
-    print('filteredData: $filteredData');
-    setState(() {
-      _searchSuccessful = true;
-      _filteredData = filteredData;
-    });
-  }
+  var _searchedValue;
 
   @override
   void dispose() {
@@ -46,66 +20,104 @@ class _MyScreenState extends State<MyScreen> {
     super.dispose();
   }
 
+  _submitSearch(value) {
+    // Perform search operation here and set _searchSuccessful to true if successful
+    setState(() {
+      _searchSuccessful = true;
+      _searchedValue = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('_searchSuccessful: $_searchSuccessful');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Screen'),
-      ),
+      appBar: MyAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  labelText: 'Search',
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () => _submitSearch(_searchController.text),
-                  ),
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Targat',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            if (_searchSuccessful && _filteredData.isNotEmpty)
+            Container(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Kontrollo targat e shkelesve',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  SearchInput(
+                    controller: _searchController,
+                    onSubmit: _submitSearch(_searchController.text),
+                  )
+                ],
+              ),
+            ),
+            if (_searchSuccessful)
               Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Search Results',
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
+                padding: EdgeInsets.all(16.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Search Results',
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _filteredData.length,
-                      itemBuilder: (context, index) {
-                        final item = _filteredData[index];
-                        return ListTile(
-                          title: Text(item['name']),
-                          subtitle: Text(item['email']),
-                        );
-                      },
-                    ),
-                  ],
+                      SizedBox(height: 16.0),
+                      // Display search results here
+                      Center(
+                        child: Text(
+                          'Search results for "$_searchedValue"',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey.shade700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            if (_searchSuccessful && _filteredData.isEmpty)
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'No results found for "${_searchController.text}"',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.grey.shade700,
+            if (_searchSuccessful)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 36.0, vertical: 16.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Container(
+                    height: 200.0,
+                    padding: EdgeInsets.all(16.0),
+                    color: Colors.grey.shade200,
+                    child: Center(
+                      child: Text(
+                        'Information Box',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

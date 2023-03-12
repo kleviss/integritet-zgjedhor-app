@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:integriteti_zgjedhor_app/screens/more_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/my_screen.dart';
+import 'package:integriteti_zgjedhor_app/screens/my_search_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/root_screen.dart';
 import 'package:integriteti_zgjedhor_app/screens/scaffold_with_bottom_nav.dart';
 import 'package:integriteti_zgjedhor_app/screens/targat_screen.dart';
@@ -32,7 +33,7 @@ final goRouter = GoRouter(
         ),
         GoRoute(
           path: '/targat',
-          builder: (context, state) => const MyScreen(),
+          builder: (context, state) => const MySearchScreen(),
         ),
         GoRoute(
           path: '/shkelesit',
@@ -66,6 +67,15 @@ final goRouter = GoRouter(
           path: '/more',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: MoreScreen(),
+          ),
+        ),
+        GoRoute(
+          path: '/report',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: RootScreen(
+              label: 'RAPORTO',
+              detailsPath: '/report/details',
+            ),
           ),
         ),
       ],

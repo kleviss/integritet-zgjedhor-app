@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             EmojiText(),
             const SizedBox(height: 20),
-            //const SearchInput(),
+            const SearchInput(onSubmit: null),
             const CategoryTitle(lT: 'Kategoritë', rT: 'Të gjitha'),
             const CategoriesSection(),
             //const CategoryTitle(lT: 'Kontrollo', rT: 'Më shumë'),
