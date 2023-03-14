@@ -50,21 +50,22 @@ class CategoriesSection extends StatelessWidget {
               subtitle: '4 shkelje',
             ),
           ),
-          CategoryItem(
-            image: 'assets/icons/kodizgjedhor.png',
-            title: 'Informacion',
-            subtitle: 'Më shumë',
-          ),
-          CategoryItem(
+          const CategoryItem(
             image: 'assets/icons/perfshihu.png',
             title: 'Pëfshihu',
             subtitle: '62 raportues',
           ),
-          CategoryItem(
-            image: 'assets/icons/rrethnesh.png',
-            title: 'Rreth nesh',
-            subtitle: 'Misioni',
-          ),
+          // CategoryItem(
+          //   image: 'assets/icons/kodizgjedhor.png',
+          //   title: 'Informacion',
+          //   subtitle: 'Më shumë',
+          // ),
+
+          // CategoryItem(
+          //   image: 'assets/icons/rrethnesh.png',
+          //   title: 'Rreth nesh',
+          //   subtitle: 'Misioni',
+          // ),
         ]);
   }
 }

@@ -124,6 +124,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     },
                   ),
                   SizedBox(height: 16.0),
+
                   GestureDetector(
                     child: Stack(
                       children: [
@@ -303,42 +304,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     },
                   ),
                   SizedBox(height: 16.0),
-                  // Date Picker field
-                  CupertinoTextFormFieldRow(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 22.0,
-                      vertical: 8.0,
-                    ),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: CupertinoColors.separator,
-                          width: 0.0,
-                          style: BorderStyle.solid,
-                        ),
-                      ),
-                    ),
-                    prefix: const Icon(CupertinoIcons.calendar),
-                    placeholder: 'Data e shkeljes',
-                    keyboardType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
-                    autocorrect: false,
-                    onChanged: (value) {
-                      setState(() {
-                        _field3Controller.text = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Ju lutem vendosni datën';
-                      }
 
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 16.0),
-
-                  SizedBox(height: 16.0),
                   // Description field
                   CupertinoTextFormFieldRow(
                     padding: const EdgeInsets.symmetric(
@@ -375,6 +341,40 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     },
                   ),
                   SizedBox(height: 16.0),
+
+                  // Date Picker field
+                  CupertinoTextFormFieldRow(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22.0,
+                      vertical: 8.0,
+                    ),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: CupertinoColors.separator,
+                          width: 0.0,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                    ),
+                    prefix: const Icon(CupertinoIcons.calendar),
+                    placeholder: 'Vendi ku ka ndodhur shkelja e supozuar',
+                    keyboardType: TextInputType.name,
+                    textCapitalization: TextCapitalization.words,
+                    autocorrect: false,
+                    onChanged: (value) {
+                      setState(() {
+                        _field3Controller.text = value;
+                      });
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Ju lutem vendosni vendin';
+                      }
+
+                      return null;
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FastDatePicker(
@@ -390,7 +390,6 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FastSegmentedControl(
@@ -401,6 +400,186 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         '2': Text('Femer'),
                       },
                     ),
+                  ),
+                  SizedBox(height: 16.0),
+
+                  GestureDetector(
+                    child: Stack(
+                      children: [
+                        CupertinoTextFormFieldRow(
+                          controller: _field2Controller,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 22.0,
+                            vertical: 8.0,
+                          ),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: CupertinoColors.separator,
+                                width: 0.0,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                          ),
+                          prefix: const Icon(Icons.domain),
+                          placeholder: 'Burimi i informacionit',
+                          keyboardType: TextInputType.name,
+                          textCapitalization: TextCapitalization.words,
+                          autocorrect: false,
+                          onTap: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (context) => CupertinoActionSheet(
+                                title: const Text('Zgjidh Burimin',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600)),
+                                actions: <CupertinoActionSheetAction>[
+                                  CupertinoActionSheetAction(
+                                    child: const Text(
+                                      'Bashkia Vlorë',
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _field2Controller.text =
+                                            'Bashkia Vlorë';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Bashkia Tiranë'),
+                                    onPressed: () {
+                                      setState(() {
+                                        _field2Controller.text =
+                                            'Bashkia Vlorë';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Bashkia Kavaje'),
+                                    onPressed: () {
+                                      setState(() {
+                                        _field2Controller.text =
+                                            'Bashkia Vlorë';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Bashkia Rrogozhine'),
+                                    onPressed: () {
+                                      setState(() {
+                                        _field2Controller.text =
+                                            'Bashkia Vlorë';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text(
+                                      'Bashkia Peqin',
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _field2Controller.text =
+                                            'Bashkia Peqin';
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Ju lutem shkruani emrin dhe mbiemrin e shkelësit';
+                            }
+                            return null;
+                          },
+                        ),
+                        const Positioned(
+                          right: 20,
+                          child: Icon(
+                            Icons.arrow_drop_down_sharp,
+                            size: 26,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) => CupertinoActionSheet(
+                          title: const Text('Zgjidh Bashkinë',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600)),
+                          actions: <CupertinoActionSheetAction>[
+                            CupertinoActionSheetAction(
+                              child: const Text(
+                                'Bashkia Vlorë',
+                              ),
+                              onPressed: () {
+                                print("Bashkia Vlorë");
+                              },
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text('Bashkia Tiranë'),
+                              onPressed: () {
+                                print("Bashkia Vlorë");
+                              },
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text('Bashkia Kavaje'),
+                              onPressed: () {
+                                print("Bashkia Vlorë");
+                              },
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text('Bashkia Rrogozhine'),
+                              onPressed: () {
+                                print("Bashkia Vlorë");
+                              },
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text(
+                                'Bashkia Peqin',
+                              ),
+                              onPressed: () {},
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            )
+                          ],
+                        ),
+                      );
+                    },
                   ),
                   SizedBox(height: 16.0),
                   Padding(

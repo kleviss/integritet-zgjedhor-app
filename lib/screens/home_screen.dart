@@ -26,6 +26,7 @@ class HomeScreen extends StatelessWidget {
             EmojiText(),
             const SizedBox(height: 20),
             const SearchInput(onSubmit: null),
+            const SizedBox(height: 20),
             const CategoryTitle(lT: 'Kategoritë', rT: 'Të gjitha'),
             const CategoriesSection(),
             //const CategoryTitle(lT: 'Kontrollo', rT: 'Më shumë'),
@@ -52,6 +53,7 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: kBackground),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
