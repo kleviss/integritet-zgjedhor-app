@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fast_forms/flutter_fast_forms.dart';
 import 'package:go_router/go_router.dart';
+import 'package:integriteti_zgjedhor_app/widgets/my_cupertino_action_sheet.dart';
 
 class ReportFormScreen extends StatefulWidget {
   @override
@@ -13,11 +14,11 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final _field1Controller = TextEditingController();
-  final _field2Controller = TextEditingController();
+  final _nameSurnameController = TextEditingController();
+  final _bashkiaController = TextEditingController();
   final _field3Controller = TextEditingController();
   final _field4Controller = TextEditingController();
-  final _field5Controller = TextEditingController();
+  final _fieldDataShkeljes = TextEditingController();
   final _field6Controller = TextEditingController();
   final _field7Controller = TextEditingController();
   final _field8Controller = TextEditingController();
@@ -27,6 +28,8 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
   List<String> _options = ['Option 1', 'Option 2', 'Option 3'];
   String? _selectedOption = '';
 
+  List<String> _bashkiaOptions = ['Bashkia Vlorë', 'Bashkia Tiranë', 'Bashkia Kavajë', 'Bashkia Rrogozhinë'];
+
   _submitForm() {
     if (_formKey.currentState!.validate()) {
       // Perform submit operation here
@@ -34,11 +37,14 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
     }
   }
 
+  String reportPageInfo =
+      'Ju po sinjalizoni për shkeljen e Kodit Zgjedhor si shit-blerja e votës, keqpërdorimi i burimeve shteterore dhe krimet zgjedhore. Për më shumë informacion sesi administrohen këto raportime, ju lutem ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Raporto shkelje',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -52,15 +58,14 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
           children: [
             Container(
               color: Colors.blue,
-              padding: EdgeInsets.all(22.0),
+              padding: const EdgeInsets.all(22.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Text.rich(
                     TextSpan(
-                      text:
-                          'Ju po sinjalizoni për shkeljen e Kodit Zgjedhor si shit-blerja e votës, keqpërdorimi i burimeve shteterore dhe krimet zgjedhore. Për më shumë informacion sesi administrohen këto raportime, ju lutem ',
+                      text: reportPageInfo,
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
@@ -113,7 +118,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     autocorrect: false,
                     onChanged: (value) {
                       setState(() {
-                        _field1Controller.text = value;
+                        _nameSurnameController.text = value;
                       });
                     },
                     validator: (value) {
@@ -123,13 +128,14 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   GestureDetector(
                     child: Stack(
                       children: [
                         CupertinoTextFormFieldRow(
-                          controller: _field2Controller,
+                          smartDashesType: SmartDashesType.disabled,
+                          controller: _bashkiaController,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 22.0,
                             vertical: 8.0,
@@ -145,86 +151,17 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                           ),
                           prefix: const Icon(Icons.domain),
                           placeholder: 'Bashkia',
-                          keyboardType: TextInputType.name,
+                          keyboardType: TextInputType.none,
                           textCapitalization: TextCapitalization.words,
                           autocorrect: false,
                           onTap: () {
                             showCupertinoModalPopup(
                               context: context,
-                              builder: (context) => CupertinoActionSheet(
-                                title: const Text('Zgjidh Bashkinë',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600)),
-                                actions: <CupertinoActionSheetAction>[
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Bashkia Vlorë',
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Tiranë'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Kavaje'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Rrogozhine'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Bashkia Peqin',
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Peqin';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Cancel',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                ],
+                              builder: (context) => MyCupertinoActionSheet(
+                                controller: _bashkiaController,
+                                options: _bashkiaOptions,
+                                sheetTitle: 'Zgjidhni bashkinë',
+                                sheetSubtitle: 'Ju lutem zgjidhni bashkinë ku ka ndodhur shkelja',
                               ),
                             );
                           },
@@ -236,7 +173,8 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                           },
                         ),
                         const Positioned(
-                          right: 20,
+                          top: 6,
+                          right: 26,
                           child: Icon(
                             Icons.arrow_drop_down_sharp,
                             size: 26,
@@ -244,66 +182,9 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      showCupertinoModalPopup(
-                        context: context,
-                        builder: (context) => CupertinoActionSheet(
-                          title: const Text('Zgjidh Bashkinë',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600)),
-                          actions: <CupertinoActionSheetAction>[
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Bashkia Vlorë',
-                              ),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Tiranë'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Kavaje'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Rrogozhine'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Bashkia Peqin',
-                              ),
-                              onPressed: () {},
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Cancel',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            )
-                          ],
-                        ),
-                      );
-                    },
+                    onTap: () {},
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   // Description field
                   CupertinoTextFormFieldRow(
@@ -340,7 +221,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   // Date Picker field
                   CupertinoTextFormFieldRow(
@@ -378,10 +259,16 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FastDatePicker(
+                      icon: const Icon(CupertinoIcons.calendar),
                       adaptive: true,
                       modalCancelButtonText: 'Anulo',
                       name: 'Data e shkeljes',
                       labelText: 'Data e shkeljes',
+                      onChanged: (value) {
+                        setState(() {
+                          _field4Controller.text = value.toString();
+                        });
+                      },
                       firstDate: DateTime.now().subtract(
                         const Duration(days: 365),
                       ),
@@ -395,19 +282,24 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     child: FastSegmentedControl(
                       name: 'field_destination',
                       labelText: 'Gjinia',
-                      children: {
+                      children: const {
                         '1': Text('Mashkull'),
                         '2': Text('Femer'),
                       },
+                      onChanged: (value) {
+                        setState(() {
+                          _field6Controller.text = value.toString();
+                        });
+                      },
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   GestureDetector(
                     child: Stack(
                       children: [
                         CupertinoTextFormFieldRow(
-                          controller: _field2Controller,
+                          controller: _bashkiaController,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 22.0,
                             vertical: 8.0,
@@ -429,80 +321,11 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                           onTap: () {
                             showCupertinoModalPopup(
                               context: context,
-                              builder: (context) => CupertinoActionSheet(
-                                title: const Text('Zgjidh Burimin',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600)),
-                                actions: <CupertinoActionSheetAction>[
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Bashkia Vlorë',
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Tiranë'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Kavaje'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Bashkia Rrogozhine'),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Vlorë';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Bashkia Peqin',
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _field2Controller.text =
-                                            'Bashkia Peqin';
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text(
-                                      'Cancel',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                ],
+                              builder: (context) => MyCupertinoActionSheet(
+                                controller: _bashkiaController,
+                                options: _bashkiaOptions,
+                                sheetTitle: 'Zgjidhni bashkinë',
+                                sheetSubtitle: 'Ju lutem zgjidhni bashkinë ku ka ndodhur shkelja',
                               ),
                             );
                           },
@@ -514,7 +337,8 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                           },
                         ),
                         const Positioned(
-                          right: 20,
+                          top: 6,
+                          right: 26,
                           child: Icon(
                             Icons.arrow_drop_down_sharp,
                             size: 26,
@@ -522,70 +346,13 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      showCupertinoModalPopup(
-                        context: context,
-                        builder: (context) => CupertinoActionSheet(
-                          title: const Text('Zgjidh Bashkinë',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600)),
-                          actions: <CupertinoActionSheetAction>[
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Bashkia Vlorë',
-                              ),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Tiranë'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Kavaje'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Bashkia Rrogozhine'),
-                              onPressed: () {
-                                print("Bashkia Vlorë");
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Bashkia Peqin',
-                              ),
-                              onPressed: () {},
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Cancel',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            )
-                          ],
-                        ),
-                      );
-                    },
+                    onTap: () {},
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 22.0,
-                      right: 22.0,
+                      left: 26.0,
+                      right: 26.0,
                       bottom: 6.0,
                       top: 12.0,
                     ),
@@ -602,8 +369,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     child: OutlinedButton(
                       onPressed: _submitForm,
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.white),
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
                         foregroundColor: MaterialStateProperty.all(Colors.blue),
                         side: MaterialStateProperty.all(
                           const BorderSide(
@@ -612,7 +378,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                           ),
                         ),
                       ),
-                      child: Text('Submit'),
+                      child: const Text('Submit'),
                     ),
                   ),
                 ],
