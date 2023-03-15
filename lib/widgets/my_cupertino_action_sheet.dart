@@ -4,12 +4,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class MyCupertinoActionSheet extends StatefulWidget {
-  const MyCupertinoActionSheet(
-      {super.key,
-      required this.controller,
-      required this.options,
-      required this.sheetTitle,
-      required this.sheetSubtitle});
+  const MyCupertinoActionSheet({
+    super.key,
+    required this.controller,
+    required this.options,
+    required this.sheetTitle,
+    required this.sheetSubtitle,
+  });
 
   final TextEditingController controller;
   final List<String> options;

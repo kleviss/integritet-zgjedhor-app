@@ -12,28 +12,70 @@ class ReportFormScreen extends StatefulWidget {
 
 class _ReportFormScreenState extends State<ReportFormScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _descriptionController = TextEditingController();
   final _nameSurnameController = TextEditingController();
+  final _descriptionController = TextEditingController();
   final _bashkiaController = TextEditingController();
-  final _field3Controller = TextEditingController();
-  final _field4Controller = TextEditingController();
-  final _fieldDataShkeljes = TextEditingController();
-  final _field6Controller = TextEditingController();
-  final _field7Controller = TextEditingController();
-  final _field8Controller = TextEditingController();
-  final _field9Controller = TextEditingController();
-  final _field10Controller = TextEditingController();
+  final _fieldShkeljaVezhguar = TextEditingController();
+  final _fieldVendiController = TextEditingController();
+  final _fieldDataShkeljesController = TextEditingController();
+  final _fieldGjiniaController = TextEditingController();
+  final _fieldBurimiInformacionitController = TextEditingController();
+  final _fieldkryeresiShkeljesController = TextEditingController();
+  final _fieldLinkController = TextEditingController();
+  final _fieldNrTelController = TextEditingController();
 
   List<String> _options = ['Option 1', 'Option 2', 'Option 3'];
   String? _selectedOption = '';
 
-  List<String> _bashkiaOptions = ['Bashkia Vlorë', 'Bashkia Tiranë', 'Bashkia Kavajë', 'Bashkia Rrogozhinë'];
+  final List<String> _bashkiaOptions = [
+    'Bashkia Tiranë',
+    'Bashkia Vlorë',
+    'Bashkia Elbasan',
+    'Bashkia Durrës',
+    'Bashkia Berat',
+    'Bashkia Korçë',
+    'Bashkia Fier',
+    'Bashkia Gjirokastër',
+    'Bashkia Shkodër',
+    'Bashkia Dibër',
+    'Bashkia Malësi e Madhe',
+    'Bashkia Kukës',
+    'Bashkia Lezhë',
+    'Në të gjithë Shqipërinë',
+  ];
+  final List<String> _burimiInformacionitOptions = [
+    'Media',
+    'Rrjete sociale',
+    'Votues',
+    'Kandidatet Politike',
+    'Terreni',
+    'Tjetër'
+  ];
+
+  final List<String> _kryeresiShkeljesOptions = [
+    'Garues elektoral - parti politike',
+    'Garues elektoral - kandidat',
+    'Organi i administratës zgjedhore',
+    'Nëpunës publik',
+    'Zyrtar i zgjedhur (për shembull Anëtar i Këshillit Bashkiak)',
+  ];
 
   _submitForm() {
     if (_formKey.currentState!.validate()) {
       // Perform submit operation here
       print('Form submitted');
+      // print all the controller fields
+      print('Name: ${_nameSurnameController.text}');
+      print('Description: ${_descriptionController.text}');
+      print('Bashkia: ${_bashkiaController.text}');
+      print('Shkelja Vezhguar: ${_fieldShkeljaVezhguar.text}');
+      print('Vendi: ${_fieldVendiController.text}');
+      print('Data Shkeljes: ${_fieldDataShkeljesController.text}');
+      print('Gjinia: ${_fieldGjiniaController.text}');
+      print('Burimi Informacionit: ${_fieldBurimiInformacionitController.text}');
+      print('Kryeresi Shkeljes: ${_fieldkryeresiShkeljesController.text}');
+      print('Link: ${_fieldLinkController.text}');
+      print('Nr Tel: ${_fieldNrTelController.text}');
     }
   }
 
@@ -92,11 +134,14 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
               ),
             ),
             const SizedBox(height: 16.0),
+
+            // Form
             Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // emri dhe mbiemri
                   CupertinoTextFormFieldRow(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 22.0,
@@ -130,6 +175,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                   ),
                   const SizedBox(height: 16.0),
 
+                  // Bashkia
                   GestureDetector(
                     child: Stack(
                       children: [
@@ -182,7 +228,17 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) => MyCupertinoActionSheet(
+                          controller: _bashkiaController,
+                          options: _bashkiaOptions,
+                          sheetTitle: 'Zgjidhni bashkinë',
+                          sheetSubtitle: 'Ju lutem zgjidhni bashkinë ku ka ndodhur shkelja',
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16.0),
 
@@ -210,12 +266,12 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                     autocorrect: false,
                     onChanged: (value) {
                       setState(() {
-                        _field4Controller.text = value;
+                        _fieldShkeljaVezhguar.text = value;
                       });
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Ju lutem vendosni datën';
+                        return 'Kjo fushë nuk mund të lihet bosh';
                       }
 
                       return null;
@@ -223,7 +279,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                   ),
                   const SizedBox(height: 16.0),
 
-                  // Date Picker field
+                  // vendi field
                   CupertinoTextFormFieldRow(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 22.0,
@@ -238,14 +294,14 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         ),
                       ),
                     ),
-                    prefix: const Icon(CupertinoIcons.calendar),
+                    prefix: const Icon(CupertinoIcons.placemark),
                     placeholder: 'Vendi ku ka ndodhur shkelja e supozuar',
                     keyboardType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
                     autocorrect: false,
                     onChanged: (value) {
                       setState(() {
-                        _field3Controller.text = value;
+                        _fieldVendiController.text = value;
                       });
                     },
                     validator: (value) {
@@ -256,6 +312,8 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       return null;
                     },
                   ),
+
+                  // Data e shkeljes
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FastDatePicker(
@@ -266,7 +324,7 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       labelText: 'Data e shkeljes',
                       onChanged: (value) {
                         setState(() {
-                          _field4Controller.text = value.toString();
+                          _fieldDataShkeljesController.text = value.toString();
                         });
                       },
                       firstDate: DateTime.now().subtract(
@@ -283,23 +341,24 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                       name: 'field_destination',
                       labelText: 'Gjinia',
                       children: const {
-                        '1': Text('Mashkull'),
-                        '2': Text('Femer'),
+                        '1': Text('Femer'),
+                        '2': Text('Mashkull'),
                       },
                       onChanged: (value) {
                         setState(() {
-                          _field6Controller.text = value.toString();
+                          _fieldGjiniaController.text = value.toString();
                         });
                       },
                     ),
                   ),
                   const SizedBox(height: 16.0),
 
+                  // burimi i informacionit
                   GestureDetector(
                     child: Stack(
                       children: [
                         CupertinoTextFormFieldRow(
-                          controller: _bashkiaController,
+                          controller: _fieldBurimiInformacionitController,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 22.0,
                             vertical: 8.0,
@@ -313,25 +372,26 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                               ),
                             ),
                           ),
-                          prefix: const Icon(Icons.domain),
+                          prefix: const Icon(Icons.newspaper),
                           placeholder: 'Burimi i informacionit',
-                          keyboardType: TextInputType.name,
+                          keyboardType: TextInputType.none,
                           textCapitalization: TextCapitalization.words,
                           autocorrect: false,
                           onTap: () {
                             showCupertinoModalPopup(
                               context: context,
                               builder: (context) => MyCupertinoActionSheet(
-                                controller: _bashkiaController,
-                                options: _bashkiaOptions,
-                                sheetTitle: 'Zgjidhni bashkinë',
-                                sheetSubtitle: 'Ju lutem zgjidhni bashkinë ku ka ndodhur shkelja',
+                                controller: _fieldBurimiInformacionitController,
+                                options: _burimiInformacionitOptions,
+                                sheetTitle: 'Burimi i informacionit',
+                                sheetSubtitle:
+                                    'Zgjidhni burimin e informacionit që ju ka informuar për shkeljen e vëzhguar',
                               ),
                             );
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Ju lutem shkruani emrin dhe mbiemrin e shkelësit';
+                              return 'Ju lutem zgjidhni burimin e informacionit';
                             }
                             return null;
                           },
@@ -346,9 +406,146 @@ class _ReportFormScreenState extends State<ReportFormScreen> {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) => MyCupertinoActionSheet(
+                          controller: _fieldBurimiInformacionitController,
+                          options: _burimiInformacionitOptions,
+                          sheetTitle: 'Burimi i informacionit',
+                          sheetSubtitle: 'Zgjidhni burimin e informacionit që ju ka informuar për shkeljen e vëzhguar',
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16.0),
+
+                  // kryerësi i shkeljes field
+                  GestureDetector(
+                    child: Stack(
+                      children: [
+                        CupertinoTextFormFieldRow(
+                          controller: _fieldkryeresiShkeljesController,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 22.0,
+                            vertical: 8.0,
+                          ),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: CupertinoColors.separator,
+                                width: 0.0,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                          ),
+                          prefix: const Icon(Icons.person_add_alt_1),
+                          placeholder: 'Kryerësi i shkeljes',
+                          keyboardType: TextInputType.none,
+                          textCapitalization: TextCapitalization.words,
+                          autocorrect: false,
+                          onTap: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (context) => MyCupertinoActionSheet(
+                                controller: _fieldkryeresiShkeljesController,
+                                options: _kryeresiShkeljesOptions,
+                                sheetTitle: 'Kryerësi i shkeljes',
+                                sheetSubtitle: 'Zgjidhni kryerësin e shkeljes',
+                              ),
+                            );
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Ju lutem zgjidhni kryerësin e shkeljes';
+                            }
+                            return null;
+                          },
+                        ),
+                        const Positioned(
+                          top: 6,
+                          right: 26,
+                          child: Icon(
+                            Icons.arrow_drop_down_sharp,
+                            size: 26,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) => MyCupertinoActionSheet(
+                          controller: _fieldBurimiInformacionitController,
+                          options: _burimiInformacionitOptions,
+                          sheetTitle: 'Burimi i informacionit',
+                          sheetSubtitle: 'Zgjidhni burimin e informacionit që ju ka informuar për shkeljen e vëzhguar',
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+
+                  // Link field
+                  CupertinoTextFormFieldRow(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22.0,
+                      vertical: 8.0,
+                    ),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: CupertinoColors.separator,
+                          width: 0.0,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                    ),
+                    prefix: const Icon(CupertinoIcons.link),
+                    placeholder: 'Linku i shkeljes (nëse ka)',
+                    keyboardType: TextInputType.url,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: false,
+                    onChanged: (value) {
+                      setState(() {
+                        _fieldLinkController.text = value;
+                      });
+                    },
+                    validator: (value) {
+                      if (!value!.startsWith('http')) {
+                        return 'Ju lutem vendosni një link të saktë';
+                      }
+
+                      return null;
+                    },
+                  ),
+
+                  // Nr teli field
+                  CupertinoTextFormFieldRow(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22.0,
+                      vertical: 8.0,
+                    ),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: CupertinoColors.separator,
+                          width: 0.0,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                    ),
+                    prefix: const Icon(CupertinoIcons.phone),
+                    placeholder: 'Nr juaj i telefonit',
+                    keyboardType: TextInputType.number,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: false,
+                    onChanged: (value) {
+                      setState(() {
+                        _fieldNrTelController.text = value;
+                      });
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 26.0,
